@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const path = require('path')
-const converImageBasePath = 'uploads/bookCovers'
+// const converImageBasePath = 'uploads/bookCovers'
 
 const bookSchema = new mongoose.Schema({
   title: {
@@ -23,7 +23,11 @@ const bookSchema = new mongoose.Schema({
     required: true,
     default: Date.now,
   },
-  converImageName: {
+  converImage: {
+    type: Buffer,
+    required: true,
+  },
+  converImageType: {
     type: String,
     required: true,
   },
@@ -35,10 +39,13 @@ const bookSchema = new mongoose.Schema({
 })
 
 bookSchema.virtual(`converImagePath`).get(function () {
-  if (this.converImageName != null) {
-    return path.join('/', converImageBasePath, this.converImageName)
+  if (this.converImage != null && this.converImageType != null) {
+    // return path.join('/', converImageBasePath, this.converImageName)
+    return `data: ${
+      this.converImageType
+    };charset=utf-8;base64,${this.converImage.toString('base64')}`
   }
 })
 
 module.exports = mongoose.model('Book', bookSchema)
-module.exports.converImageBasePath = converImageBasePath
+// module.exports.converImageBasePath = converImageBasePath

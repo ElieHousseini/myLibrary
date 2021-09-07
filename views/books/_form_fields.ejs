@@ -22,12 +22,12 @@ book.publishDate.toISOString().split('T')[0] %>">
 </div>
 <div>
     <label>Page Count</label>
-    <input type = "number" name = 'pageCount' 
+    <input type = "number" name = 'pageCount'
     min ="1" value = "<%= book.pageCount%>">
 </div>
 <div>
     <label>Cover</label>
-    <input type = "file" name = 'cover'>
+    <input type = "file" name = 'cover' class='filepond'>
 </div>
 <div>
     <label>Description</label>
