@@ -1,0 +1,12 @@
+<% bookConverClass = locals.large ? 'book-cover-large' : ''%> <%bookGridClass =
+locals.large ? 'book-grid-large' : "" %>
+<div class="book-grid <%= bookGridClass %>">
+  <% books.forEach(book => {%>
+  <a href="/books/<%= book.id %>">
+    <img
+      class="book-cover <%= bookConverClass %>"
+      src="<%=book.converImagePath %>"
+    />
+  </a>
+  <% }) %>
+</div>
